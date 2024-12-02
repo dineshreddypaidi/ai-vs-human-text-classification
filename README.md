@@ -1,4 +1,3 @@
-
 # AI vs Human Text Classification API
 
 This project provides an API for user authentication, text classification (AI-generated vs. human-generated), and retrieval of classification history.
@@ -43,6 +42,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Basic endpoint to verify if the API is running.
 
 #### Response (Success - 200)
+
 ```json
 {
   "result": "hello"
@@ -58,6 +58,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Registers a new user.
 
 #### Request Body (JSON or `application/x-www-form-urlencoded`)
+
 ```json
 {
   "username": "your_username",
@@ -68,6 +69,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Success - 200)
+
 ```json
 {
   "message": "User registered in successfully"
@@ -75,6 +77,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Error - 405)
+
 ```json
 {
   "error": "Username already exists"
@@ -90,6 +93,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Authenticates a user and starts a session.
 
 #### Request Body (JSON or `application/x-www-form-urlencoded`)
+
 ```json
 {
   "username": "your_username",
@@ -98,6 +102,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Success - 200)
+
 ```json
 {
   "message": "User logged in successfully"
@@ -105,6 +110,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Error - 404)
+
 ```json
 {
   "error": "Invalid username or password"
@@ -120,6 +126,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Logs out the authenticated user.
 
 #### Response (Success - 200)
+
 ```json
 {
   "message": "logout successful"
@@ -135,6 +142,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Retrieves the authenticated user's profile information.
 
 #### Response (Success - 200)
+
 ```json
 {
   "data": {
@@ -149,6 +157,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Error - 401)
+
 ```json
 {
   "message": "is not authenticated"
@@ -164,6 +173,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Predicts if the provided text is AI-generated or human-generated.
 
 #### Request Body
+
 ```json
 {
   "text": "Your text to classify here."
@@ -171,13 +181,16 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Success - 200)
+
 ```json
 {
-  "result": "AI"  // or "Human"
+  "prediction": "Ai generated or human generated",
+  "accuracy": "accuracy of the prediction"
 }
 ```
 
 #### Response (Error - 401)
+
 ```json
 {
   "message": "is not authenticated"
@@ -193,6 +206,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 - **Description**: Retrieves the history of classification results for the authenticated user.
 
 #### Response (Success - 200)
+
 ```json
 {
   "history": [
@@ -211,6 +225,7 @@ Most endpoints require user authentication. Use **session authentication** for r
 ```
 
 #### Response (Error - 401)
+
 ```json
 {
   "message": "is not authenticated"
@@ -221,14 +236,14 @@ Most endpoints require user authentication. Use **session authentication** for r
 
 ## Response Codes
 
-| Code | Meaning                      |
-|------|------------------------------|
-| 200  | Success                      |
-| 400  | Bad Request                  |
-| 401  | Unauthorized                 |
-| 404  | Not Found                    |
-| 405  | Method Not Allowed           |
-| 415  | Unsupported Media Type       |
+| Code | Meaning                |
+| ---- | ---------------------- |
+| 200  | Success                |
+| 400  | Bad Request            |
+| 401  | Unauthorized           |
+| 404  | Not Found              |
+| 405  | Method Not Allowed     |
+| 415  | Unsupported Media Type |
 
 ---
 
