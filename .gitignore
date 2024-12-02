@@ -2,8 +2,3 @@
 
 __pycache__
 migrations
-
-ai_human_classifier
-/model/ai_human_classifier
-
-model\ai_human_classifier
