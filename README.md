@@ -64,7 +64,8 @@ Most endpoints require user authentication. Use **session authentication** for r
   "username": "your_username",
   "password": "your_password",
   "email": "your_email@example.com",
-  "name": "your_name"
+  "name": "your_name",
+  "phone": "your_phone_number"
 }
 ```
 

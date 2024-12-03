@@ -34,7 +34,7 @@ def login(request):
         
         if user:
             auth_login(request, user)  # Log in the user
-            return JsonResponse({"message": "User logged in successfully"}, safe=False, status=200)
+            return JsonResponse({"message": "User loggedin successfully"}, safe=False, status=200)
         else:
             return JsonResponse({"error": "Invalid username or password"}, status=404)
     else:
@@ -52,6 +52,7 @@ def register(request):
                 password = data.get('password')
                 email = data.get('email')
                 name = data.get('name')
+                phone_number = data.get('phone')
                 
             except json.JSONDecodeError:
                 return JsonResponse({"error": "Invalid JSON format"}, status=400)
@@ -61,6 +62,7 @@ def register(request):
             password = request.POST.get('password')
             email = request.POST.get('email')
             name = request.POST.get('name')
+            phone_number = request.POST.get('phone')
             
         else:
             return JsonResponse({"error": "Unsupported content type"}, status=415)   
@@ -71,8 +73,8 @@ def register(request):
         if User.objects.filter(email=email).exists():
             return JsonResponse({"error": "Email already exists"}, status=405)
 
-        # if models.UserProfile.objects.filter(phone_number=phone_number).exists():
-        #     JsonResponse({"error": "Phone already exists"}, status=405)
+        if models.UserProfile.objects.filter(phone_number=phone_number).exists():
+            JsonResponse({"error": "Phone already exists"}, status=405)
         
         user_obj = {
             'username' : username,
@@ -84,10 +86,10 @@ def register(request):
         user_obj = User.objects.create_user(**user_obj)
         user_obj.save()
         
-        profile_obj = models.UserProfile(username=user_obj,no_of_enquires=0)
+        profile_obj = models.UserProfile(username=user_obj,no_of_enquires=0,phone_number=phone_number)
         profile_obj.save()
         
-        return JsonResponse({"message": "User registered in successfully"}, safe=False, status=200)
+        return JsonResponse({"message": "User registered successfully"}, safe=False, status=200)
     
     else:
         return JsonResponse({"error": "Invalid request method"}, status=405)
