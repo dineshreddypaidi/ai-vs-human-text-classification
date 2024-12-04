@@ -7,8 +7,12 @@ from django.conf import settings
 logging.set_verbosity_error()
 
 def predict_text(text):
-    tokenizer = BertTokenizer.from_pretrained(f"{settings.BASE_DIR}/model/ai_human_classifier")                      # -> tokenizer
-    model = TFBertForSequenceClassification.from_pretrained(f"{settings.BASE_DIR}/model/ai_human_classifier")         # -> model  
+    # tokenizer = BertTokenizer.from_pretrained(f"{settings.BASE_DIR}/model/ai_human_classifier")                      # -> tokenizer
+    # model = TFBertForSequenceClassification.from_pretrained(f"{settings.BASE_DIR}/model/ai_human_classifier")         # -> model  
+    
+    tokenizer = BertTokenizer.from_pretrained("dineshreddypaidi/ai_vs_human_text_classifier")                    
+    model = TFBertForSequenceClassification.from_pretrained("dineshreddypaidi/ai_vs_human_text_classifier")
+    
     encoding = tokenizer(
         text,
         return_tensors="tf",
@@ -29,6 +33,7 @@ def predict_text(text):
     }
 
 # Example usage
-# new_text = "This is grate to hear."
-# prediction = predict_text(new_text)
-# print(prediction)
+
+new_text = "This is grate to hear."
+prediction = predict_text(new_text)
+print(prediction)
